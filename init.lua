@@ -105,7 +105,7 @@ vim.opt.number = true
 -- vim.opt.relativenumber = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
-vim.opt.mouse = 'a'
+vim.opt.mouse = ''
 
 -- Don't show the mode, since it's already in the status line
 vim.opt.showmode = false
@@ -189,6 +189,10 @@ vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right win
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
+-- More convenient movement when lines are wrapped.
+vim.keymap.set('n', 'j', 'gj', { desc = 'Move cursor down one line' })
+vim.keymap.set('n', 'k', 'gk', { desc = 'Move cursor up one line' })
+
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
@@ -229,10 +233,10 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
   {
     'zbirenbaum/copilot.lua',
-    cmd = "Copilot",
-    event = "InsertEnter",
+    cmd = 'Copilot',
+    event = 'InsertEnter',
     config = function()
-      require("copilot").setup({})
+      require('copilot').setup {}
     end,
   },
 
