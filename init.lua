@@ -236,7 +236,11 @@ require('lazy').setup({
     cmd = 'Copilot',
     event = 'InsertEnter',
     config = function()
-      require('copilot').setup {}
+      require('copilot').setup {
+        suggestion = {
+          auto_trigger = true,
+        },
+      }
     end,
   },
 
@@ -673,7 +677,7 @@ require('lazy').setup({
       local servers = {
         -- clangd = {},
         -- gopls = {},
-        -- pyright = {},
+        pyright = {},
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
@@ -915,7 +919,14 @@ require('lazy').setup({
       -- Load the colorscheme here.
       -- Like many other themes, this one has different styles, and you could load
       -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      vim.cmd.colorscheme 'tokyonight-night'
+      -- vim.cmd.colorscheme 'tokyonight-night'
+    end,
+  },
+  {
+    'arzg/vim-colors-xcode',
+    priority = 1000, -- Make sure to load this before all the other start plugins.
+    config = function()
+      vim.cmd.colorscheme 'xcodedarkhc'
     end,
   },
 
