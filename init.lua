@@ -692,6 +692,7 @@ require('lazy').setup({
         -- clangd = {},
         -- gopls = {},
         pyright = {},
+        ocamllsp = {},
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
@@ -917,9 +918,16 @@ require('lazy').setup({
   },
   {
     'arzg/vim-colors-xcode',
-    priority = 1000, -- Make sure to load this before all the other start plugins.
+    -- priority = 1000, -- Make sure to load this before all the other start plugins.
+    -- config = function()
+    --   vim.cmd.colorscheme 'xcodelighthc'
+    -- end,
+  },
+  {
+    'rose-pine/neovim',
+    name = 'rose-pine',
     config = function()
-      vim.cmd.colorscheme 'xcodelighthc'
+      vim.cmd 'colorscheme rose-pine'
     end,
   },
 
@@ -1015,6 +1023,15 @@ require('lazy').setup({
   -- Or use telescope!
   -- In normal mode type `<space>sh` then write `lazy.nvim-plugin`
   -- you can continue same window with `<space>sr` which resumes last telescope search
+  {
+    'iamcco/markdown-preview.nvim',
+    cmd = { 'MarkdownPreviewToggle', 'MarkdownPreview', 'MarkdownPreviewStop' },
+    build = 'cd app && npm install',
+    init = function()
+      vim.g.mkdp_filetypes = { 'markdown' }
+    end,
+    ft = { 'markdown' },
+  },
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
