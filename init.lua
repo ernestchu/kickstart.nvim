@@ -1058,6 +1058,14 @@ require('lazy').setup({
     config = function()
       vim.opt.termguicolors = true
       require('bufferline').setup {}
+
+      -- Cycle through buffers
+      vim.keymap.set('n', 'L', ':BufferLineCycleNext<CR>', { silent = true, desc = 'Next buffer in BufferLine' })
+      vim.keymap.set('n', 'H', ':BufferLineCyclePrev<CR>', { silent = true, desc = 'Previous buffer in BufferLine' })
+
+      -- Move current buffer position
+      vim.keymap.set('n', '<C-l>', ':BufferLineMoveNext<CR>', { silent = true, desc = 'Move buffer right' })
+      vim.keymap.set('n', '<C-h>', ':BufferLineMovePrev<CR>', { silent = true, desc = 'Move buffer left' })
     end,
   },
 }, {
