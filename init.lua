@@ -240,7 +240,6 @@ end
 ---@type vim.Option
 local rtp = vim.opt.rtp
 rtp:prepend(lazypath)
-rtp:prepend '/Users/ernestchu/.opam/5.3.0/share/ocp-indent/vim'
 
 -- [[ Configure and install plugins ]]
 --
@@ -700,7 +699,6 @@ require('lazy').setup({
         -- clangd = {},
         -- gopls = {},
         pyright = {},
-        ocamllsp = {},
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
