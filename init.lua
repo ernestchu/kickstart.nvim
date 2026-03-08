@@ -115,18 +115,23 @@ vim.o.showmode = false
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
 vim.schedule(function()
-  vim.g.clipboard = {
-    name = 'osc52',
-    copy = {
-      ['+'] = require('vim.ui.clipboard.osc52').copy '+',
-      ['*'] = require('vim.ui.clipboard.osc52').copy '*',
-    },
-    paste = {
-      ['+'] = require('vim.ui.clipboard.osc52').paste '+',
-      ['*'] = require('vim.ui.clipboard.osc52').paste '*',
-    },
-  }
-  vim.o.clipboard = 'unnamedplus'
+  if os.getenv 'SSH_TTY' or os.getenv 'SSH_CONNECTION' then
+    -- REMOTE: Use OSC 52 (Requires Neovim 0.10+)
+    vim.g.clipboard = {
+      name = 'OSC 52',
+      copy = {
+        ['+'] = require('vim.ui.clipboard.osc52').copy '+',
+        ['*'] = require('vim.ui.clipboard.osc52').copy '*',
+      },
+      paste = {
+        ['+'] = require('vim.ui.clipboard.osc52').paste '+',
+        ['*'] = require('vim.ui.clipboard.osc52').paste '*',
+      },
+    }
+  else
+    -- LOCAL: Use standard system clipboard
+    vim.opt.clipboard = 'unnamedplus'
+  end
 end)
 
 -- Enable break indent
