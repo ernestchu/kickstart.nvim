@@ -128,12 +128,8 @@ vim.schedule(function()
         ['*'] = require('vim.ui.clipboard.osc52').paste '*',
       },
     }
-    vim.api.nvim_echo({ { 'Using OSC52 clipboard', 'Type' } }, false, {}) -- print indicator
-  else
-    -- LOCAL: Use standard system clipboard
-    vim.o.clipboard = 'unnamedplus'
-    vim.api.nvim_echo({ { 'Using system clipboard', 'Type' } }, false, {}) -- print indicator
   end
+  vim.o.clipboard = 'unnamedplus'
 end)
 
 -- Enable break indent
