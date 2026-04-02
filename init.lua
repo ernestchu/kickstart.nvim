@@ -132,6 +132,9 @@ vim.schedule(function()
   vim.o.clipboard = 'unnamedplus'
 end)
 
+-- replace the selection without overwriting your clipboard
+vim.keymap.set('x', 'p', '"_dP', { noremap = true, silent = true })
+
 -- Enable break indent
 vim.o.breakindent = true
 
